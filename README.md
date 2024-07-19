@@ -74,6 +74,13 @@ Configuration
 -   **Celery**: Celery configuration is located in `celery.py`.
 -   **React**: Configuration files for React are located in the `frontend` directory.
 
+----------------------
+ACCESSING
+----------------------
+
+API DOCS = http://localhost:8000/swagger
+ADMIN PANEL = http://localhost:8000/admin
+
 Contributing
 ------------
 

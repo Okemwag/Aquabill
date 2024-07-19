@@ -29,5 +29,6 @@ export interface Customer {
     id: number;
     username: string;
     email: string;
+    phone_number: string;
     
 }

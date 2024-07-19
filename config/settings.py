@@ -51,6 +51,7 @@ LOCAL_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "drf_yasg",
+    "django_celery_beat",
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
 ]
@@ -96,23 +97,23 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
 # DATABASES = {
 #     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "postgres",
-#         "USER": "postgres",
-#         "PASSWORD": "postgres",
-#         "HOST": "db",
-#         "PORT": "5432",
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
 #     }
 # }
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "db",
+        "PORT": "5432",
+    }
+}
 
 
 # Password validation
@@ -161,11 +162,17 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Celery settings
 CELERY_BROKER_URL = "redis://localhost:6379/0"
-CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
-CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_RESULT_BACKEND = "django-db"
+CELERY_RESULT_EXTENDED = True
+CELERY_DISABLE_RATE_LIMITS = True
+CELERY_SEND_TASK_SENT_EVENT = True
+CELERY_RESULT_PERSISTENT = True
+CELERY_IGNORE_RESULT = False
+CELERY_ACCEPT_CONTENT = ["application/json", "application/x-python-serialize"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
-CELERY_TIMEZONE = "UTC"
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+CELERY_TASK_DEFAULT_QUEUE = "default"
 
 # Email Configuration
 # settings.py
@@ -176,6 +183,9 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "info@aquabill.com"
 EMAIL_HOST_PASSWORD = "password"
 DEFAULT_FROM_EMAIL = "info@aquabill.com"
+
+AFRICASTALKING_USERNAME = "sandbox"
+AFRICASTALKING_API_KEY = "your_api_key"
 
 
 REST_FRAMEWORK = {
@@ -219,9 +229,10 @@ SIMPLE_JWT = {
 }
 
 
-# CORS_ALLOWED_ORIGINS = [
-#     'http://localhost:5173',
-# ]
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    # add your frontend url here
+]
 
 CORS_ORIGIN_ALLOW_ALL = True
 

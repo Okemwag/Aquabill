@@ -31,4 +31,10 @@ urlpatterns = [
     path("api/v1/customers/", include("aquabill.customers.urls")),
     path("api/v1/", include("aquabill.virtual_meters.urls")),
     path("api/v1/", include("aquabill.payments.urls")),
+    path("api/v1/", include("aquabill.accounts.urls")),
 ]
+
+
+admin.site.site_header = "AQUABILL ADMIN"
+admin.site.site_title = "AQUABILL ADMIN"
+admin.site.index_title = "AQUABILL ADMIN"

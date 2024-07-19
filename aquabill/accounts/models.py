@@ -7,8 +7,12 @@ from django.conf import settings
 # Create your models here.
 
 class Account(models.Model):
+    class Status(models.TextChoices):
+        ACTIVE = "ACTIVE"
+        INACTIVE = "INACTIVE"
     customer = models.OneToOneField(Customer, on_delete=models.CASCADE)
     balance = models.DecimalField(max_digits=10, decimal_places=2)
+    status = models.CharField(max_length=20, choices=Status.choices, default=Status.ACTIVE)
 
     def __str__(self) -> str:
         return f"{self.customer} - {self.balance}"
@@ -21,7 +25,7 @@ class Account(models.Model):
 
         total_usage = self.total_usage
         balance_deduction = (
-            total_usage  # Assume 1 unit of usage costs 1 unit of currency
+            total_usage  # Assuming 1 unit of usage costs 1 unit of currency
         )
 
         if account.balance < balance_deduction:

@@ -1,4 +1,3 @@
-// components/Profile.tsx
 import React from "react";
 import { useCustomer } from "../services/hooks";
 
