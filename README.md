@@ -34,21 +34,16 @@ Getting Started
 ### Setup
 
 1.  **Clone the Repository**
-
-    bash
-
-    Copy code
-
-    `git clone https://github.com/yourusername/prepaid-billing-management-software.git
-    cd prepaid-billing-management-software`
+    ```
+    git clone https://github.com/Okemwag/Aquabill.git
+    cd Aquabill
+    ```
 
 2.  **Build and Start Containers**
 
-    bash
-
-    Copy code
-
-    `docker-compose up --build`
+    ```
+    make build
+    ```
 
     This command will build the Docker images and start the containers defined in the `docker-compose.yml` file.
 
@@ -56,21 +51,17 @@ Getting Started
 
     Open a new terminal and run the following command to apply database migrations:
 
-    bash
-
-    Copy code
-
-    `docker-compose exec web python manage.py migrate`
+    ```
+    make migrate
+    ```
 
 4.  **Create a Superuser**
 
     To access the Django admin interface, create a superuser with:
 
-    bash
-
-    Copy code
-
-    `docker-compose exec web python manage.py createsuperuser`
+    ```
+    make createsuperuser
+    ```
 
 5.  **Access the Application**
 
