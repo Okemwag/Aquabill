@@ -1,6 +1,10 @@
 AQUABILL - Prepaid Billing Management Software for Smart Water Meters
 ==========================================================
 
+Contacts:
+ email - gabrielokemwa83@gmail.com
+ name - Gabriel Okemwa
+
 Overview
 --------
 
