@@ -76,7 +76,7 @@ Getting Started
 
 5.  **Access the Application**
 
-    The application will be available at `http://localhost:8000`. The React frontend can be accessed at `http://localhost:3000` if running separately.
+    The application will be available at `http://localhost:8000`. The React frontend can be accessed at `http://localhost:5173` if running separately.
 
 Configuration
 -------------
