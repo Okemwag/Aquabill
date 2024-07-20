@@ -1,24 +1,24 @@
 from .models import Customer
 from rest_framework import serializers
 from django.contrib.auth import authenticate
-from phonenumber_field.serializerfields import PhoneNumberField
+# from phonenumber_field.serializerfields import PhoneNumberField
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
-    phone_number = PhoneNumberField()
+    # phone_number = PhoneNumberField()
     class Meta:
         model = Customer
-        fields = ("id", "username", "email", "phone_number")
+        fields = ("id", "username", "email")
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
-    phone_number = PhoneNumberField()
+    # phone_number = PhoneNumberField()
     password1 = serializers.CharField(write_only=True)
     password2 = serializers.CharField(write_only=True)
 
     class Meta:
         model = Customer
-        fields = ("id", "username", "email", "phone_number", "password1", "password2")
+        fields = ("id", "username", "email", "password1", "password2")
         extra_kwargs = {"password": {"write_only": True}}
 
     def validate(self, attrs):
