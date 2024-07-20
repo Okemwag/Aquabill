@@ -43,13 +43,20 @@ Getting Started
     cd Aquabill
     ```
 
-2.  **Build and Start Containers**
+2.  **Build and Start Backend**
 
     ```
     make build
     ```
 
     This command will build the Docker images and start the containers defined in the `docker-compose.yml` file.
+
+    - **START THE FRONTEND**
+    ```
+    cd client
+    yarn install
+    yarn run dev
+    ```
 
 3.  **Apply Migrations**
 
